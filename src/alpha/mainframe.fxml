@@ -1,0 +1,20 @@
+<!--fx:controller="engine.Engine"-->
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import userinterface.Viewer?>
+<BorderPane style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <BorderPane style="-fx-padding: 20px, 10px, 20px, 10px">
+            <left>
+                <Label fx:id="scoreLabel" style="-fx-text-fill: white"/>
+            </left>
+            <center>
+                <Label fx:id="gameOverLabel" style="-fx-text-fill: white"/>
+            </center>
+        </BorderPane>
+    </top>
+
+    <center>
+        <Viewer fx:id="viewer" nbRows="31" nbCols="28" />
+    </center>
+</BorderPane>
