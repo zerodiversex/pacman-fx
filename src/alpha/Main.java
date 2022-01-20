@@ -39,7 +39,7 @@ public class Main extends Application {
             if (event.getCode() == KeyCode.P) {
                 if (data.getGameStatus() == Game.STATUS.PAUSED) {
                     engine.start();
-                } else {
+                } else if (data.getGameStatus() == Game.STATUS.ON_GOING) {
                     engine.stop();
                 }
             }

@@ -78,12 +78,12 @@ public class Engine implements EngineService, RequireDataService, CreateMapServi
         this.viewer.update();
         this.scoreLabel.setText(String.format("Score: %d", this.data.getScore()));
         if (data.getGameStatus() == Game.STATUS.LOSE) {
-            this.gameOverLabel.setText("DEFAITE");
             stop();
+            this.gameOverLabel.setText("DEFAITE");
         }
         if (data.getGameStatus() == Game.STATUS.VICTORY) {
-            this.gameOverLabel.setText("GAGNE");
             stop();
+            this.gameOverLabel.setText("GAGNE");
         }
         if (data.getMode() == Player.MODE.SUPERPACMAN) {
             if (data.getSpecialModeTimer() == 0) {
@@ -267,8 +267,7 @@ public class Engine implements EngineService, RequireDataService, CreateMapServi
                     data.setPlayerVitesse(changeVitesseXY(data.getLastDirection()));
                     data.addLocationPlayer(data.getVitessePlayer());
                 }
-            }
-            else {
+            } else {
                 data.setPlayerVitesse(potentialPlayerVelocity);
                 data.setPlayerLocation(potentialPlayerLocation);
                 data.setLastDirection(direction);
@@ -278,27 +277,30 @@ public class Engine implements EngineService, RequireDataService, CreateMapServi
 
     private void handlePlayerGoIntoPointCell(Game.Cell pacmanLocationCell) {
         data.getBoard()[(int) data.getLocationPlayer().getX()][(int) data.getLocationPlayer().getY()] = Game.Cell.EMPTY;
-        data.decrNbDots(1);
         if (pacmanLocationCell == Game.Cell.YELLOWDOT) {
             data.addScore(10);
+            data.decrNbDots(1);
         }
         // Change to green dot, can eat bot
         if (pacmanLocationCell == Game.Cell.GREENDOT) {
             data.setMode(Player.MODE.SUPERPACMAN);
             data.addScore(20);
             data.setSpecialModeTimer(50);
+            data.decrNbDots(1);
         }
 
         // TODO: Make bot invisible
         if (pacmanLocationCell == Game.Cell.PURLEDOT) {
             data.setMode(Player.MODE.INVISIBLE);
             data.addScore(20);
+            data.decrNbDots(1);
         }
 
         // TODO: Change map
         if (pacmanLocationCell == Game.Cell.REDDOT) {
             data.setMode(Player.MODE.LABYRINTHE);
             data.addScore(20);
+            data.decrNbDots(1);
         }
     }
 
